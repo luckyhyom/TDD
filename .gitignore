@@ -1,0 +1,4 @@
+# 기본 설정
+node_modules
+.vscode
+coverage
