@@ -24,7 +24,7 @@ describe('FetchProduct', () => {
 
     it('async - await', async () => {
         const prodoct = await fetchProduct();
-        expect(prodoct).toEqual({item: 'Milk', price: 2200 });
+        expect(prodoct).toEqual({item: 'Milk', price: 200 });
     });
 
     it('async - resolves', () => {
