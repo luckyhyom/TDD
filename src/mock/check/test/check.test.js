@@ -1,7 +1,4 @@
 const check = require('../check.js');
-const mock = jest.fn(() => console.log('test!'));
-const mockSuc = jest.fn((s) => console.log(s));
-const mockFail = jest.fn((s) => console.log(s));
 
 /**
  * 콜백 함수가 안에서 어떻게 동작하는지, 내부함수를 굳이 확인해야하나?
@@ -12,8 +9,31 @@ const mockFail = jest.fn((s) => console.log(s));
  */
 
 describe('check', () => {
-    it('', () => {
-        check(mock,mockSuc, mockFail);
-        expect(mock.mock.calls.length).toBe(1);
-    })
-})
+    let mockSuccess;
+    let mockFail;
+
+    beforeEach(() => {
+        // 매번 초기화 해야함
+        mockSuccess = jest.fn();
+        mockFail = jest.fn();
+    });
+    it('should be called with yes', () => {
+        check(() => true, mockSuccess, mockFail);
+
+        // expect(mockSuccess.mock.calls.length).toBe(1);
+        expect(mockSuccess).toHaveBeenCalledTimes(1);
+
+        // 첫번째로 호출된 mockSuccess의 첫번째 인자 확인
+        // expect(mockSuccess.mock.calls[0][0]).toBe('yes');
+        expect(mockSuccess).toHaveBeenCalledWith('yes')
+
+        // expect(mockFail.mock.calls.length).toBe(0);
+        expect(mockFail).toHaveBeenCalledTimes(0);
+    });
+    it('should be called with no', () => {
+        check(() => false, mockSuccess, mockFail);
+        expect(mockFail).toHaveBeenCalledTimes(1);
+        expect(mockFail).toHaveBeenCalledWith('no');
+        expect(mockSuccess).toHaveBeenCalledTimes(0);
+    });
+});
