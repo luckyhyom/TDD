@@ -27,7 +27,7 @@ describe('Product Service', () => {
 
     it('should be available', async () => {
         const items = await service.fetchAvailableItems();
-        expect(items).toEqual({ item: 'nike', available: true});
+        expect(items).toEqual([{"available": true, "item": "nike"}]);
     });
 });
 
