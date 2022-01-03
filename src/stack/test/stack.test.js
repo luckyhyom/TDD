@@ -19,6 +19,9 @@ describe('stack', () => {
     });
 
     describe('pop', () => {
+        it('throws error if it is empty', () => {
+            expect(() => stack.pop()).toThrow('Empty stack can not pop data');
+        });
         it('should return and delete its latest data', () => {
             stack.push(1);
             stack.push(2);

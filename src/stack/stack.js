@@ -7,6 +7,10 @@ class Stack {
     };
 
     pop() {
+        if (this.array.length === 0) {
+            throw Error('Empty stack can not pop data');
+        };
+        
         let lastIndex = this.array.length - 1;
         let returnValue = this.array[lastIndex];
 
