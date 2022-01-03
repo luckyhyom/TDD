@@ -1,29 +1,25 @@
 class Stack {
-    array = [];
+    head = null;
+    _size = 0;
 
-    push(data) {
-        let index = this.array.length;
-        this.array[index] = data;
+    push(item) {
+        const node = { item, next: this.head };
+        this.head = node;
+        this._size++;
     };
 
     pop() {
-        if (this.array.length === 0) {
+        if (this.head === null) {
             throw Error('Empty stack can not pop data');
         };
-        
-        let lastIndex = this.array.length - 1;
-        let returnValue = this.array[lastIndex];
-
-        let replaced = [];
-        for (let i = 0; i < lastIndex; i++) {
-            replaced[i] = this.array[i];
-        };
-        this.array = replaced;
-        return returnValue;
+        const item = this.head.item;
+        this.head = this.head.next;
+        this._size--;
+        return item;
     }
 
-    show() {
-        return this.array;
+    size() {
+        return this._size;
     };
 }
 

@@ -6,8 +6,8 @@ describe('stack', () => {
         stack = new Stack();
     });
 
-    it('shows array property', () => {
-        expect(stack.show()).toEqual([]);
+    it('return size', () => {
+        expect(stack.size()).toBe(0);
     });
 
     it('should save datas', () => {
@@ -15,7 +15,7 @@ describe('stack', () => {
         stack.push(2);
         stack.push(3);
         stack.push(4);
-        expect(stack.show()).toStrictEqual([1,2,3,4]);
+        expect(stack.size()).toBe(4);
     });
 
     describe('pop', () => {
@@ -27,12 +27,12 @@ describe('stack', () => {
             stack.push(2);
             stack.push(3);
             stack.push(4);
-            expect(stack.show()).toStrictEqual([1, 2, 3, 4]);
+            expect(stack.size()).toStrictEqual(4);
 
             let popped = stack.pop();
             expect(popped).toBe(4);
 
-            expect(stack.show()).toStrictEqual([1, 2, 3]);
+            expect(stack.size()).toStrictEqual(3);
         });
     });
 });
